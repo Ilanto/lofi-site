@@ -9,8 +9,8 @@ body, html {
   height: 100vh;
   overflow: hidden;
   font-family: 'Courier New', monospace;
-  position: relative;
   background-color: black;
+  position: relative;
 }
 
 #intro {
@@ -67,16 +67,21 @@ body, html {
 }
 
 .typewriter {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #00f0ff,
+    0 0 20px #00f0ff,
+    0 0 40px #00f0ff;
+  animation: flicker 2s infinite alternate;
   min-height: 2em;
-  color: #f5f5f5;
-  text-shadow: 0 0 8px rgba(255,255,255,0.3);
 }
 
 .subtitle {
   font-size: 1rem;
   margin-top: 10px;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 #modeToggle {
@@ -106,4 +111,10 @@ body.dark {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+}
+
+@keyframes flicker {
+  0%   { opacity: 0.9; text-shadow: 0 0 10px #00f0ff; }
+  50%  { opacity: 1;   text-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff; }
+  100% { opacity: 0.95; text-shadow: 0 0 15px #00f0ff; }
 }
