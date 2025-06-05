@@ -1,24 +1,76 @@
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Courier New', monospace;
-  background-image: url('https://raw.githubusercontent.com/Ilanto/lofi-site/main/ComfyUI_00048_.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  overflow: hidden;
   height: 100vh;
   color: white;
+  position: relative;
+}
+
+#background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  transition: background-image 2s ease-in-out;
+}
+
+#rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#intro {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: black;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 1s ease-out;
 }
 
 .overlay {
-  background-color: rgba(0, 0, 0, 0.6);
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
   text-align: center;
-  padding: 20px;
+  padding-top: 20vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  position: relative;
+}
+
+.character {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 280px;
+  z-index: 10;
+  opacity: 0.95;
+}
+
+.typewriter {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  min-height: 2em;
 }
 
 #modeToggle {
@@ -31,20 +83,10 @@ body {
   border-radius: 6px;
   background-color: #ffffffa0;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 100;
 }
 
 body.dark {
   background-color: #111;
-  background-image: none;
   color: #ddd;
-}
-
-.character {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  height: 280px;
-  opacity: 0.9;
-  z-index: 999;
 }
