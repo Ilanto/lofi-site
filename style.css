@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Courier New', monospace;
-  background-image: url('https://images.unsplash.com/photo-1601991974040-3ec89fa5e168?fit=crop&w=1400&q=80');
+  background-image: url('https://raw.githubusercontent.com/Ilanto/lofi-site/main/ComfyUI_00048_.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -44,7 +44,7 @@ body.dark {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 250px;
+  height: 280px;
   opacity: 0.9;
   z-index: 999;
 }
