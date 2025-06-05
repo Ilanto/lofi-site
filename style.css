@@ -21,12 +21,30 @@ body {
   padding: 20px;
 }
 
-h1 {
-  font-size: 48px;
-  margin-bottom: 10px;
+#modeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffffa0;
+  cursor: pointer;
+  z-index: 1000;
 }
 
-p {
-  font-size: 20px;
-  margin: 0;
+body.dark {
+  background-color: #111;
+  background-image: none;
+  color: #ddd;
+}
+
+.character {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 250px;
+  opacity: 0.9;
+  z-index: 999;
 }
