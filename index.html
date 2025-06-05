@@ -16,27 +16,28 @@
   <!-- 🌧️ Yağmur efekti -->
   <canvas id="rain"></canvas>
 
-  <!-- 🌙 Gece/Gündüz geçişli arka plan -->
+  <!-- 🔁 Gece/Gündüz geçişli arka plan -->
   <div id="background"></div>
 
-  <!-- Gece modu butonu -->
-  <button id="modeToggle">🌙 Toggle Dark Mode</button>
-
-  <!-- Karakter görseli -->
+  <!-- 👧 Karakter -->
   <img src="https://raw.githubusercontent.com/Ilanto/lofi-site/main/Lofideneme_00011_.png" class="character" alt="lofi character" />
 
-  <div class="overlay">
+  <!-- 💬 Ana içerik -->
+  <div class="content">
     <h1 class="typewriter"></h1>
-    <p>Rainy nights, smooth beats, peaceful minds.</p>
+    <p class="subtitle">Rainy nights, smooth beats, peaceful minds.</p>
 
     <audio autoplay loop controls id="player">
       <source src="https://files.catbox.moe/aeslw8.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
     </audio>
   </div>
 
+  <!-- 🌙 Gece mod butonu -->
+  <button id="modeToggle">🌓</button>
+
+  <!-- JS -->
   <script>
-    // 🎬 INTRO FADE-OUT
+    // 🎬 INTRO
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("intro").style.opacity = "0";
@@ -46,13 +47,12 @@
       }, 2500);
     });
 
-    // 🌧️ YAĞMUR EFEKTİ
+    // 🌧️ YAĞMUR
     const canvas = document.getElementById("rain");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    let drops = Array(300).fill().map(() => ({
+    const drops = Array(300).fill().map(() => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       l: Math.random() * 1 + 1,
@@ -65,53 +65,44 @@
       ctx.strokeStyle = "rgba(174,194,224,0.5)";
       ctx.lineWidth = 1;
       ctx.beginPath();
-      drops.forEach(drop => {
-        ctx.moveTo(drop.x, drop.y);
-        ctx.lineTo(drop.x + drop.xs, drop.y + drop.l);
+      drops.forEach(d => {
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x + d.xs, d.y + d.l);
       });
       ctx.stroke();
-      move();
-    }
-
-    function move() {
-      drops.forEach(drop => {
-        drop.x += drop.xs;
-        drop.y += drop.ys;
-        if (drop.y > canvas.height) {
-          drop.y = 0;
-          drop.x = Math.random() * canvas.width;
+      drops.forEach(d => {
+        d.x += d.xs;
+        d.y += d.ys;
+        if (d.y > canvas.height) {
+          d.y = 0;
+          d.x = Math.random() * canvas.width;
         }
       });
     }
-
     setInterval(draw, 33);
 
     // 💬 TYPEWRITER
-    const txt = ["Lo-fi ile hayal dünyana açıl...", "Rahatla, müzikle bütünleş...", "Kalemin ve düşüncelerin özgür."];
-    let i = 0, j = 0, currentTxt = "", isDeleting = false;
-    const typewriter = document.querySelector(".typewriter");
+    const lines = ["Lo-fi ile hayal dünyana açıl...", "Rahatla ve seslere bırak kendini...", "Kalemin ve düşüncelerin özgür."];
+    let i = 0, j = 0, txt = "", isDel = false;
+    const el = document.querySelector(".typewriter");
 
     function type() {
-      currentTxt = txt[i];
-      typewriter.textContent = isDeleting ? currentTxt.slice(0, --j) : currentTxt.slice(0, ++j);
-
-      if (!isDeleting && j === currentTxt.length) {
-        isDeleting = true;
-        setTimeout(type, 2000);
-      } else if (isDeleting && j === 0) {
-        isDeleting = false;
-        i = (i + 1) % txt.length;
-        setTimeout(type, 300);
+      txt = lines[i];
+      el.textContent = isDel ? txt.slice(0, --j) : txt.slice(0, ++j);
+      if (!isDel && j === txt.length) {
+        isDel = true; setTimeout(type, 2000);
+      } else if (isDel && j === 0) {
+        isDel = false; i = (i + 1) % lines.length; setTimeout(type, 300);
       } else {
-        setTimeout(type, isDeleting ? 50 : 100);
+        setTimeout(type, isDel ? 50 : 100);
       }
     }
     type();
 
-    // 🌙 GECE/GÜNDÜZ SLAYT
+    // 🔁 Arka plan geçişi
     const backgrounds = [
       "https://raw.githubusercontent.com/Ilanto/lofi-site/main/ComfyUI_00048_.png",
-      "https://images.unsplash.com/photo-1525186402429-b4ff38bed1f9?fit=crop&w=1400&q=80"
+      "https://images.unsplash.com/photo-1519682577862-22b62b24e493?fit=crop&w=1400&q=80"
     ];
     let bgIndex = 0;
     setInterval(() => {
@@ -119,11 +110,10 @@
       document.getElementById("background").style.backgroundImage = `url('${backgrounds[bgIndex]}')`;
     }, 10000);
 
-    // DARK MODE
+    // 🌙 Tema butonu
     document.getElementById("modeToggle").addEventListener("click", () => {
       document.body.classList.toggle("dark");
     });
   </script>
-
 </body>
 </html>
