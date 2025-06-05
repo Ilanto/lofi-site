@@ -8,21 +8,15 @@
 </head>
 <body>
 
-  <!-- 🎬 Intro ekranı -->
   <div id="intro">
     <h1>Lofi Vibes by Ilanto</h1>
   </div>
 
-  <!-- 🌧️ Yağmur efekti -->
   <canvas id="rain"></canvas>
-
-  <!-- 🔁 Gece/Gündüz geçişli arka plan -->
   <div id="background"></div>
 
-  <!-- 👧 Karakter -->
   <img src="https://raw.githubusercontent.com/Ilanto/lofi-site/main/Lofideneme_00011_.png" class="character" alt="lofi character" />
 
-  <!-- 💬 Ana içerik -->
   <div class="content">
     <h1 class="typewriter"></h1>
     <p class="subtitle">Rainy nights, smooth beats, peaceful minds.</p>
@@ -32,12 +26,10 @@
     </audio>
   </div>
 
-  <!-- 🌙 Gece mod butonu -->
   <button id="modeToggle">🌓</button>
 
-  <!-- JS -->
   <script>
-    // 🎬 INTRO
+    // INTRO
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("intro").style.opacity = "0";
@@ -47,7 +39,7 @@
       }, 2500);
     });
 
-    // 🌧️ YAĞMUR
+    // RAIN
     const canvas = document.getElementById("rain");
     const ctx = canvas.getContext("2d");
     canvas.width = window.innerWidth;
@@ -81,7 +73,7 @@
     }
     setInterval(draw, 33);
 
-    // 💬 TYPEWRITER
+    // TYPEWRITER
     const lines = ["Lo-fi ile hayal dünyana açıl...", "Rahatla ve seslere bırak kendini...", "Kalemin ve düşüncelerin özgür."];
     let i = 0, j = 0, txt = "", isDel = false;
     const el = document.querySelector(".typewriter");
@@ -99,10 +91,10 @@
     }
     type();
 
-    // 🔁 Arka plan geçişi
+    // BACKGROUND SLIDES
     const backgrounds = [
-      "https://raw.githubusercontent.com/Ilanto/lofi-site/main/ComfyUI_00048_.png",
-      "https://images.unsplash.com/photo-1519682577862-22b62b24e493?fit=crop&w=1400&q=80"
+      "https://raw.githubusercontent.com/Ilanto/lofi-site/main/Lofideneme_00011_.png",
+      "https://raw.githubusercontent.com/Ilanto/lofi-site/main/ComfyUI_00048_.png"
     ];
     let bgIndex = 0;
     setInterval(() => {
@@ -110,10 +102,11 @@
       document.getElementById("background").style.backgroundImage = `url('${backgrounds[bgIndex]}')`;
     }, 10000);
 
-    // 🌙 Tema butonu
+    // MODE TOGGLE
     document.getElementById("modeToggle").addEventListener("click", () => {
       document.body.classList.toggle("dark");
     });
   </script>
+
 </body>
 </html>
